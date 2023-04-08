@@ -21,19 +21,18 @@ export const addCar=(reqObj)=>async dispatch=>{
     dispatch({type: 'LOADING' , payload:true})
 
     try {
-         await axios.post('/api/v1/car' , reqObj)
-       
-         dispatch({type: 'LOADING' , payload:false})
-         message.success('New car added successfully')
-         setTimeout(() => {
+        await axios.post('/api/v1/car' , reqObj)
+    
+        dispatch({type: 'LOADING' , payload:false})
+        message.success('New car added successfully')
+        setTimeout(() => {
             window.location.href='/admin'
-         }, 500);
+        }, 500);
+
     } catch (error) {
         console.log(error)
         dispatch({type: 'LOADING' , payload:false})
-    }
-      
-
+    }      
 }
 
 export const editCar=(reqObj)=>async dispatch=>{
@@ -41,18 +40,17 @@ export const editCar=(reqObj)=>async dispatch=>{
     dispatch({type: 'LOADING' , payload:true})
 
     try {
-         await axios.post('/api/v1/car/:reqObj._id' , reqObj)
-       
-         dispatch({type: 'LOADING' , payload:false})
-         message.success('Car details updated successfully')
-         setTimeout(() => {
-            window.location.href='/admin'
-         }, 500);
+        await axios.put(`/api/v1/car/${reqObj._id}`, reqObj);
+    
+        dispatch({type: 'LOADING' , payload:false})
+        message.success('Car details updated successfully')
+        setTimeout(() => {
+        window.location.href='/admin'
+        }, 500);
     } catch (error) {
         console.log(error)
         dispatch({type: 'LOADING' , payload:false})
-    }
-      
+    }      
 
 }
 
@@ -61,17 +59,16 @@ export const deleteCar=(reqObj)=>async dispatch=>{
     dispatch({type: 'LOADING' , payload:true})
 
     try {
-         await axios.post('/api/v1/car/:reqObj._id' , reqObj)
-       
-         dispatch({type: 'LOADING' , payload:false})
-         message.success('Car deleted successfully')
-         setTimeout(() => {
-            window.location.reload()
-         }, 500);
+        await axios.delete(`/api/v1/car/${reqObj.carid}`, reqObj);
+    
+        dispatch({type: 'LOADING' , payload:false})
+        message.success('Car deleted successfully')
+        setTimeout(() => {
+        window.location.reload()
+        }, 500);
     } catch (error) {
         console.log(error)
         dispatch({type: 'LOADING' , payload:false})
-    }
-      
+    }     
 
 }

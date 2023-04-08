@@ -9,6 +9,7 @@ import moment from "moment";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Popconfirm, message } from "antd";
 const { RangePicker } = DatePicker;
+
 function AdminHome() {
   const { cars } = useSelector((state) => state.carsReducer);
   const { loading } = useSelector((state) => state.alertsReducer);
@@ -47,7 +48,7 @@ function AdminHome() {
 
                 <div className="car-content d-flex align-items-center justify-content-between">
                   <div className="text-left pl-2">
-                    <p>{car.name}</p>
+                    <p>{car.name}  </p>
                     <p> Rent Per Hour {car.rentPerHour} /-</p>
                   </div>
 

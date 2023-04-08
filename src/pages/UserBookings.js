@@ -5,11 +5,13 @@ import { getAllBookings } from "../redux/actions/bookingActions";
 import { Col, Row } from "antd";
 import Spinner from '../components/Spinner';
 import moment from "moment";
+
 function UserBookings() {
   const dispatch = useDispatch();
   const { bookings } = useSelector((state) => state.bookingsReducer);
   const {loading} = useSelector((state) => state.alertsReducer);
   const user = JSON.parse(localStorage.getItem("user"));
+  
   useEffect(() => {
     dispatch(getAllBookings());
   }, []);
@@ -20,10 +22,9 @@ function UserBookings() {
       <h3 className="text-center mt-2">My Bookings</h3>
     
       <Row justify="center" gutter={16}>
-        <Col lg={16} sm={24}>
-         
+        <Col lg={16} sm={24}>                   
             {bookings.filter(o=>o.user==user._id).map((booking) => {
-             return <Row gutter={16} className="bs1 mt-3 text-left">
+            return <Row gutter={16} className="bs1 mt-3 text-left">
                 <Col lg={6} sm={24}>
                     <p><b>{booking.car.name}</b></p>
                     <p>Total hours : <b>{booking.totalHours}</b></p>
